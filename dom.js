@@ -13,9 +13,10 @@ console.log(document.URL);
  console.log(document.links);
  console.log(document.images);
 
+
+
 //  getelementbyID
 // change title
-
 // console.log(document.getElementById('items'));
 //  console.log(document.getElementById('header-title'));
 var it=document.getElementById('items');
@@ -35,9 +36,12 @@ console.log(title);
 title.style.fontWeight='bold';
 title.style.color='green';*/
 
-// get element byclassname
 
-var items=document.getElementsByClassName('list-group-item');
+
+
+
+// get element byclassname
+/*var items=document.getElementsByClassName('list-group-item');
 console.log(items);
 console.log(items[1]);
 // items[1].textContent='hello';
@@ -55,10 +59,32 @@ for(var i=0;i<items.length;i++)
     
 //     items[i].style.backgroundColor='yellow';
 // }
-
-
 // gives error
-// items.style.backgroundColor='red';
+// items.style.backgroundColor='red';*/
+
+
+
+
+// getelementbytagname
+var li=document.getElementsByTagName('li');
+console.log(li);
+li[1].textContent='hello';
+
+ li[1].style.fontWeight='bold';
+
+li[2].style.backgroundColor='green';
+li[4].style.fontWeight='bold';
+li[4].style.color='green';
+
+// by using classname li tag does not have any effect bcz it not have class
+var li=document.getElementsByClassName('li');
+console.log(li);
+li[4].style.fontWeight='bold';
+li[4].style.color='green';
+
+
+
+
 
 
 
