@@ -19,11 +19,25 @@ const emailInput = document.querySelector('#email');
 
 myForm.addEventListener('submit', onSubmit);
 
+
 function onSubmit(e) {
   e.preventDefault();
   // instead of console add name and email to the localstorage
-  localStorage.setItem('name',namein.value);
-  localStorage.setItem('email',emailInput.value);
+
+  // localStorage.setItem('name',namein.value);
+  // localStorage.setItem('email',emailInput.value);
+
+
+// add name and email to localstorage as a object
+
+let userdetails=
+  {
+    name:namein.value,
+    email:emailInput.value
+
+
+  };
+   localStorage.setItem(' userdetails',JSON.stringify(userdetails));
 
   if(namein.value==''||emailInput.value=='')
   {
