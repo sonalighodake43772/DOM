@@ -15,7 +15,7 @@ document.cookie='name=john';*/
 // form validation
 const myForm = document.querySelector('#my-form');
 const namein = document.querySelector('#name');
-const emailInput = document.querySelector('#email');
+const emailInput = document.querySelector('#emailID');
 const userList = document.querySelector('#users');
 
 
@@ -47,9 +47,10 @@ function onSubmit(e) {
 
   // using uniqe id we can add multiple user older will nt removed
   localStorage.setItem(userdetails.email, JSON.stringify(userdetails));
-
+  
+  
   ShowUser(userdetails);
-}
+  }
 
 // show user on screen
 window.addEventListener("DOMContentLoaded", () => {
@@ -61,26 +62,56 @@ window.addEventListener("DOMContentLoaded", () => {
     const userString = localStorageObj[key];
     const userObj = JSON.parse(userString);
     ShowUser(userObj);
+   
+
   }
 })
-
-
-
-
-
 function ShowUser(user) {
-  const li = document.createElement('li');
-  li.appendChild(document.createTextNode(`${user.name}: ${user.email}`));
-  userList.appendChild(li);
 
-
-  // const parentnode=document.getElementById('users');
-  // const childnode=`<li>${user.name}:${user.email}</li>`
-  // parentnode.innerHTML=parentnode.innerHTML + childnode;
+  // when we create new user with same mail it will ceate new one instead of change older one
+  if(localStorage.getItem(user.email)!==null)
+  {
+    removeUserFromScreen(user.email);
+  }
+  // create new li on screen
+  // const li = document.createElement('`<li id=${user.email}>');
+  // li.appendChild(document.createTextNode(`${user.name}: ${user.email}`));
+  // userList.appendChild(li);
+   const parentnode=document.getElementById('users');
+   const childnode= `<li id=${user.email}> ${user.name} - ${user.email}
+   <button onclick=deleteUser('${user.email}')> Delete User </button>
+   <button onclick=edituser('${user.name}','${user.email}')> edit User </button>
+</li>`
+   parentnode.innerHTML=parentnode.innerHTML + childnode;
   // Clear fields
-  namein.value = '';
-  emailInput.value = '';
+    namein.value = '';
+   emailInput.value = '';
+  }
+
+  // delete user
+function deleteUser(emailID)
+{
+  localStorage.removeItem(emailID);
+removeUserFromScreen(emailID);
 
 }
 
+// edituser
+function edituser(name,emailID)
+{
+  document.getElementById('emailID').value = emailID;
+  document.getElementById('name').value = name;
+  }
+
+
+
+  // remove user from onscreen
+function removeUserFromScreen(emailID){
+  const parentNode = document.getElementById('users');
+  const childNode = document.getElementById(emailID);
+if(childNode)
+{
+ parentNode.removeChild(childNode);
+}
+}
 
